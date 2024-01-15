@@ -1,23 +1,25 @@
 <?php
-require_once('../QCM/class/qcm.php');
-require_once('../QCM/class/question.php');
-require_once('../QCM/class/answer.php');
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php $question1->addAnswer(new Answer('Php Orienté Objet'));
-$question1->addAnswer(new Answer('ProgrammatiOn Orientée Outil'));
-$question1->addAnswer(new Answer('Programmation Orientée Objet', Answer::BONNE_REPONSE));
-$question1->addAnswer(new Answer('Papillon Onirique Ostentatoire'));
-$question1->setExplications('Sans commentaires si vous avez eu faux :-°');
+require_once './class/Answer.php';
+require_once './class/Question.php';
+require_once './class/Qcm.php';
+require_once './utils/connexion_database.php';
+
+/**
+ * @var PDO $db
+ */
+
+$qcm = new Qcm();
+$question1 = new Question("Que signifie POO ? ");
+$question1->addAnswer(new Answer("Programmation Orientée Objet", Answer::BONNE_REPONSE));
+$question1->addAnswer(new Answer("Programmation Orientée Procédurale"));
+$question1->addAnswer(new Answer("Programmation Orientée Fonctionnelle"));
+$question1->setExplanation("Sans commentaire, si vous avez eu faux");
+cdscsdfdvdsfdsfdscdsfdscsfcdfscsq
+echo "<pre>";
+var_dump($question1);
+echo "</pre>";
+
 $qcm->addQuestion($question1);
-$qcm->generate(); ?>
-    
-</body>
-</html>
+
+
+

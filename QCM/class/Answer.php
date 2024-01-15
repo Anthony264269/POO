@@ -1,22 +1,22 @@
 <?php
-// include_once('./qcm.php');
-// include_once('./question.php');
 
-class Answer {
+class Answer
+{
+    private string $content;
 
-    const BONNEREPONSE = true;
-    private string $addAnswer;
+    private bool $isCorrect;
+    const BONNE_REPONSE = true;
 
-
-    public function __construct($addAnswer, $bonneReponse = false){
-        $this->$addAnswer = $addAnswer; 
-        $this->BONNEREPONSE = $bonneReponse;
+    public function __construct($content, $isCorrect = false)
+    {
+        $this->content = $content;
+        $this->isCorrect = $isCorrect;
     }
 
+    public function getContent() : string
+    {
+        return $this->content;
+    }
 
 }
 
-
-
- 
-?>
