@@ -6,20 +6,11 @@ if (isset($_POST) && !empty($_POST['name'])) {
     $newPerso = $_POST['name'];
     $heroManager = new HeroesManager($db);
     $hero = new Hero(['name' => $newPerso]);
-    var_dump($hero);
-
-    // Ajouter le héros à la base de données
     $heroManager->addHero($hero);
+    var_dump($heroManager->findAllAlive($hero));
+ 
+    
 }
-
-    
-
-// if(isset($_POST['nom']) && (!empty($_POST['nom'])){
-
-
-//     };
-    
-
 ?>
 
 

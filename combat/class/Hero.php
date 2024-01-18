@@ -13,7 +13,7 @@ class Hero {
     public function __construct(array $data) { // je récupère un tableau qui correspond à une ligne de ma BDD
         // $this->id = $data['id'];
         $this->name = $data['name'];
-        // $this->health_Point = $data['health_point']; 
+        $this->health_Point = $data['health_point'] = 100; 
 
     }
 
