@@ -3,15 +3,17 @@
 require_once('../combat/config/autoload.php');
 require_once('../combat/config/connexion_database.php');
 
+
+
 class FightsManager{
 
-private PDO $db;
-private $createMonster;
-private $fight;
+    public function createMonster(){
+        $newMonster = new Monster; 
+        $newMonster->setName('Monsieur Peabody');
+        $newMonster->getHealth_Point();
+        $newMonster;
+    }
 
 
-public function __construct($db){
-    $this->db = $db;
-}
 
 }

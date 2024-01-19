@@ -52,14 +52,41 @@ class HeroesManager
         }
     }
 
-    public function findAllAlive(Hero $survivant)
+    public function findAllAlive()
     {
-        $request = $this->db->prepare('SELECT * FROM heroes WHERE health_point > 0');
-        $request->execute();
-        $survivant = $request->fetchAll();  
-        return $survivant;
-        
+        $request = $this->db->query('SELECT * FROM heroes WHERE health_point > 0');
+        $aliveHeroes = $request->fetchAll();
+
+        $tlb = [];
+
+        foreach ($aliveHeroes as $aliveHeroe) {
+
+            $hero = new Hero($aliveHeroe);
+            $hero->setId($aliveHeroe['id']);
+            $tlb[] = $hero;
+        }
+
+        return $tlb;
     }
 
+    public function find($selectId)
+    {
+        $request = $this->db->prepare("SELECT * FROM heroes WHERE id = :id");
+        $request->execute([
+            'id' => $selectId,
+            
+        ]);
+        $selectId = $request->fetchAll();
 
+        $tlbs = [];
+        $hero = new Hero($selectId);
+        $hero->setId($selectId['id']);
+        $tlbs[] = $hero;
+        return $tlbs;
+        var_dump($hero);
+        //     ':id' => $selectId
+        // ]);
+
+
+    }
 }

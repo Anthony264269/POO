@@ -1,7 +1,7 @@
 <?php
 
 try {
-    $dsn = 'mysql:hots=localhost;dbname=hero';
+    $dsn = 'mysql:hots=localhost;dbname=combat';
 
     $username = 'root';
 

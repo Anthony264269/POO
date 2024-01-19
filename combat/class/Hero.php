@@ -17,6 +17,8 @@ class Hero {
 
     }
 
+    
+
 
     public function setId($id): void
     {

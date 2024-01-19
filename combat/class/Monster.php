@@ -4,20 +4,20 @@ require_once('../combat/config/autoload.php');
 require_once('../combat/config/connexion_database.php');
 
 class Monster {
-    private int $id;
+    // private int $id;
     private string $name;
-    private int $health_Point;
+    private int $health_Point = 100;
 
 
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
+    // public function setId($id): void
+    // {
+    //     $this->id = $id;
+    // }
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
+    // public function getId(): int
+    // {
+    //     return $this->id;
+    // }
 
     public function setName($name): void
     {
