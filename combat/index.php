@@ -2,6 +2,7 @@
 require_once('../combat/config/connexion_database.php');
 require_once('../combat/config/autoload.php');
 $heroManager = new HeroesManager($db);
+
 $aliveHeroes = $heroManager->findAllAlive();
 
 // var_dump($heroManager->findAllAlive());
@@ -9,6 +10,7 @@ if (isset($_POST) && !empty($_POST['name'])) {
     $newPerso = $_POST['name'];
     $hero = new Hero(['name' => $newPerso]);
     $heroManager->addHero($hero);
+    $fightManager->createMonster();
 }
 
 // var_dump($aliveHeroes);

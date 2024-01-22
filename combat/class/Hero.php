@@ -6,15 +6,14 @@ require_once('../combat/config/connexion_database.php');
 class Hero {
     private int $id;
     private string $name;
-    private int $health_Point;//faire une méthode frapper!!!!!!!!!!!!!!
+    private int $health_Point = 100;//faire une méthode frapper!!!!!!!!!!!!!!
 
 
     
     public function __construct(array $data) { // je récupère un tableau qui correspond à une ligne de ma BDD
         // $this->id = $data['id'];
         $this->name = $data['name'];
-        $this->health_Point = $data['health_point'] = 100; 
-
+        $this->health_Point = $data['health_point']; 
     }
 
     
@@ -45,7 +44,7 @@ class Hero {
         $this->health_Point = $health_Point;
     }
 
-    public function getHealth_Point(): string
+    public function getHealth_Point(): int
     {
         return $this->health_Point;
     }

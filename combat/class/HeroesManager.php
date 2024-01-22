@@ -74,16 +74,15 @@ class HeroesManager
         $request = $this->db->prepare("SELECT * FROM heroes WHERE id = :id");
         $request->execute([
             'id' => $selectId,
-            
         ]);
-        $selectId = $request->fetchAll();
+        $selectId = $request->fetch();
 
-        $tlbs = [];
+        
         $hero = new Hero($selectId);
         $hero->setId($selectId['id']);
-        $tlbs[] = $hero;
-        return $tlbs;
-        var_dump($hero);
+        
+        return $hero;
+        // var_dump($hero);
         //     ':id' => $selectId
         // ]);
 
