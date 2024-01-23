@@ -1,23 +1,21 @@
 <?php
 
-require_once('../combat/config/autoload.php');
-require_once('../combat/config/connexion_database.php');
+require_once('./config/autoload.php');
+require_once('./config/connexion_database.php');
 
 class Hero {
+   
     private int $id;
     private string $name;
-    private int $health_Point = 100;//faire une méthode frapper!!!!!!!!!!!!!!
+    private int $health_Point;
 
 
     
     public function __construct(array $data) { // je récupère un tableau qui correspond à une ligne de ma BDD
         // $this->id = $data['id'];
         $this->name = $data['name'];
-        $this->health_Point = $data['health_point']; 
+      
     }
-
-    
-
 
     public function setId($id): void
     {
@@ -49,6 +47,22 @@ class Hero {
         return $this->health_Point;
     }
 
+    public function setDelete($hero): void
+    {
+        $this->name = $hero;
+    }
 
+    public function getDelete(): int
+    {
+        return $this->name;
+    }
+    public function hit(Monster $monster): int{
+
+        $damage = rand(0,50);
+        $monsterHealthPoint = $monster->getHealth_Point();
+        $monster->setHealth_Point($monsterHealthPoint - $damage);
+
+        return $damage;
+    }
 
 }

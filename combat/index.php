@@ -1,8 +1,8 @@
 <?php
-require_once('../combat/config/connexion_database.php');
-require_once('../combat/config/autoload.php');
+require_once('./config/autoload.php');
+require_once('./config/connexion_database.php');
 $heroManager = new HeroesManager($db);
-
+$fightsManager = new FightsManager($db);
 $aliveHeroes = $heroManager->findAllAlive();
 
 // var_dump($heroManager->findAllAlive());
@@ -10,7 +10,8 @@ if (isset($_POST) && !empty($_POST['name'])) {
     $newPerso = $_POST['name'];
     $hero = new Hero(['name' => $newPerso]);
     $heroManager->addHero($hero);
-    $fightManager->createMonster();
+    $fightsManager->createMonster();
+   
 }
 
 // var_dump($aliveHeroes);

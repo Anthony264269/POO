@@ -1,23 +1,21 @@
 <?php
 
-require_once('../combat/config/autoload.php');
-require_once('../combat/config/connexion_database.php');
+require_once('./config/autoload.php');
+require_once('./config/connexion_database.php');
 
 class Monster {
     // private int $id;
     private string $name;
     private int $health_Point = 100;
 
+    public function hit(Hero $hero): int{
 
-    // public function setId($id): void
-    // {
-    //     $this->id = $id;
-    // }
+        $damage = rand(0,50);
+        $monsterHealthPoint = $hero->getHealth_Point();
+        $hero->setHealth_Point($monsterHealthPoint - $damage);
 
-    // public function getId(): int
-    // {
-    //     return $this->id;
-    // }
+        return $damage;
+    }
 
     public function setName($name): void
     {

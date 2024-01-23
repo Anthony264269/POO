@@ -1,15 +1,12 @@
 <?php
 
-require_once('../combat/config/autoload.php');
-require_once('../combat/config/connexion_database.php');
+require_once('./config/autoload.php');
+require_once('./config/connexion_database.php');
 
 class HeroesManager
 {
 
     private PDO $db;
-    private $selectHeroes;
-    private array $listHeroes;
-    private array $checkHeroes;
 
     public function __construct($db)
     {
@@ -37,15 +34,15 @@ class HeroesManager
             echo 'Le héros existe déjà.';
         } else {
 
-            $request = $this->db->prepare('INSERT INTO heroes (name, health_point) VALUES (:name, :health_point)');
+            $request = $this->db->prepare('INSERT INTO heroes (name) VALUES (:name)');
             $request->execute([
 
-                'name' => $newPerso->getName(),
-                'health_point' => 100
+                'name' => $newPerso->getName()
+                
             ]);
 
             $id = $this->db->lastInsertId();
-            //    $hero->setId($id);
+               $newPerso->setId($id);
 
 
 
@@ -63,6 +60,8 @@ class HeroesManager
 
             $hero = new Hero($aliveHeroe);
             $hero->setId($aliveHeroe['id']);
+            $hero->setName($aliveHeroe['name']);
+            $hero->setHealth_Point($aliveHeroe['health_point']);
             $tlb[] = $hero;
         }
 
@@ -80,7 +79,7 @@ class HeroesManager
         
         $hero = new Hero($selectId);
         $hero->setId($selectId['id']);
-        
+        $hero->setHealth_Point(100);
         return $hero;
         // var_dump($hero);
         //     ':id' => $selectId
@@ -88,4 +87,26 @@ class HeroesManager
 
 
     }
+
+    public function upDate($hero)
+    {
+
+
+        $request = $this->db->prepare('UPDATE heroes SET health_point = :health_point WHERE id = :id');
+        $request->execute([
+            'id' => $hero->getId(),
+            'health_point' => $hero->getHealth_Point()
+        ]);
+       
+    }
+
+    public function delete($hero){
+        if($hero->getHealth_Point()< 0){
+       
+           $request = $this->db->prepare("DELETE FROM heroes WHERE id = :id");
+           $request->execute([
+               'id' => $hero->getId(),
+           ]);
+       }
+       }
 }
